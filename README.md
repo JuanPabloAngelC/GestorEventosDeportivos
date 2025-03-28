@@ -28,3 +28,91 @@ GestorEventosDeportivos
 │   │   │                   └───JugadorServlet.java // Servir las peticiones relacionadas con los jugadores (registrar, obtener jugadores, etc.).
 ```
 
+## Endpoints
+
+### Equipos
+
+- **GET** `/equipos`  
+  Obtiene la lista de equipos registrados.
+
+- **POST** `/equipos`  
+  Crea un nuevo equipo.
+
+  Ejemplo de petición:
+
+  ```json
+  {
+      "id": 1,
+      "nombre": "Equipo A",
+      "deporte": "Fútbol",
+      "ciudad": "Madrid",
+      "fechaFundacion": "1990-05-12",
+      "logo": "logo.png",
+      "jugadores": [
+          101,
+          102,
+          103
+      ]
+  }
+  ```
+
+### Jugadores
+
+- **GET** `/jugadores`  
+  Obtiene la lista de jugadores registrados.
+
+- **POST** `/jugadores`  
+  Crea un nuevo jugador.
+
+  Ejemplo de petición:
+
+  ```json
+  {
+      "id": 1,
+      "nombre": "Juan",
+      "apellido": "Pérez",
+      "fechaNacimiento": "1995-08-15",
+      "nacionalidad": "Argentina",
+      "posicion": "Delantero",
+      "numero": 10,
+      "equipoId": 1,
+      "estadoActivo": true
+  }
+  ```
+
+### Eventos
+
+- **GET** `/eventos`  
+  Obtiene la lista de eventos registrados.
+
+- **POST** `/eventos`  
+  Crea un nuevo evento.
+
+  Ejemplo de petición:
+
+  ```json
+  {
+      "nombre": "Final Copa Mundial 2025",
+      "fecha": "2025-06-15T18:00:00",
+      "lugar": "Estadio Nacional",
+      "deporte": "Fútbol",
+      "equiposParticipantes": [
+          1,
+          2
+      ], 
+      "capacidad": 50000,
+      "entradasVendidas": 0,
+      "estado": "Programado"
+  }
+  ```
+
+- **PUT** `/eventos?accion=vender-entradas&eventoId=0&cantidad=1000`  
+  Actualiza el evento para vender entradas.
+
+- **PUT** `/eventos?accion=actualizar-estado&eventoId=0&estado=Cancelado`  
+  Actualiza el estado del evento (ej. "Cancelado").
+
+### Estadísticas
+
+- **GET** `/estadisticas`  
+  Obtiene las estadísticas relacionadas con los eventos, equipos y jugadores.
